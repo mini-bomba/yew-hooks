@@ -47,7 +47,8 @@ where
 
     {
         let load_more = load_more.clone();
-        use_effect_with_deps(
+        use_effect_with(
+            load_more,
             move |load_more| {
                 if **load_more {
                     let callback = &*callback_ref.current();
@@ -56,7 +57,6 @@ where
 
                 || ()
             },
-            load_more,
         );
     }
 

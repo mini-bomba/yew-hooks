@@ -413,7 +413,8 @@ pub fn use_media_with_options(
         let paused = paused.clone();
         let play = play.clone();
         let auto_play = options.auto_play;
-        use_effect_with_deps(
+        use_effect_with(
+            (node, src),
             move |(node, src)| {
                 if let Some(media) = node.cast::<HtmlMediaElement>() {
                     media.set_controls(false);
@@ -430,7 +431,6 @@ pub fn use_media_with_options(
 
                 || ()
             },
-            (node, src),
         );
     }
 

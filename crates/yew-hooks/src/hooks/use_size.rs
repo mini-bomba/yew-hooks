@@ -35,7 +35,8 @@ pub fn use_size(node: NodeRef) -> (u32, u32) {
 
     {
         let state = state.clone();
-        use_effect_with_deps(
+        use_effect_with(
+            node,
             move |node| {
                 let closure = Closure::wrap(Box::new(move |entries: Vec<ResizeObserverEntry>| {
                     for entry in &entries {
@@ -58,7 +59,6 @@ pub fn use_size(node: NodeRef) -> (u32, u32) {
 
                 move || observer.disconnect()
             },
-            node,
         );
     }
 

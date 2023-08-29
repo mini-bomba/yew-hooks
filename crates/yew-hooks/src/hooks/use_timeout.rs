@@ -109,13 +109,13 @@ where
     {
         let reset = reset.clone();
         let timeout_ref = timeout_ref.clone();
-        use_effect_with_deps(
+        use_effect_with(
+            millis,
             move |_| {
                 reset();
 
                 move || *timeout_ref.borrow_mut() = None
             },
-            millis,
         );
     }
 

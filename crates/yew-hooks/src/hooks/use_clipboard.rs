@@ -127,7 +127,7 @@ pub fn use_clipboard() -> UseClipboardHandle {
     let text = use_state_ptr_eq(|| None);
     let bytes = use_state_ptr_eq(|| None);
     let bytes_mime_type = use_state_ptr_eq(|| None);
-    let is_supported = use_memo(
+    let is_supported = use_memo((),
         |_| {
             window()
                 .expect_throw("Can't find the global Window")
@@ -135,18 +135,16 @@ pub fn use_clipboard() -> UseClipboardHandle {
                 .clipboard()
                 .is_some()
         },
-        (),
     );
     let copied = use_state_ptr_eq(|| false);
 
-    let clipboard = use_memo(
+    let clipboard = use_memo((),
         |_| {
             window()
                 .expect_throw("Can't find the global Window")
                 .navigator()
                 .clipboard()
         },
-        (),
     );
 
     let write_text = {

@@ -25,7 +25,8 @@ use yew::prelude::*;
 /// ```
 #[hook]
 pub fn use_favicon(href: String) {
-    use_effect_with_deps(
+    use_effect_with(
+        href,
         move |href| {
             let link = {
                 if let Ok(Some(link)) = document().query_selector("link[rel*='icon']") {
@@ -49,6 +50,5 @@ pub fn use_favicon(href: String) {
 
             || ()
         },
-        href,
     );
 }

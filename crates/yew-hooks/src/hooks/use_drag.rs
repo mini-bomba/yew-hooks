@@ -117,7 +117,7 @@ pub fn use_drag_with_options(node: NodeRef, options: UseDragOptions) -> UseDragH
         });
     }
 
-    use_effect_with_deps(
+    use_effect_with(node,
         move |node| {
             if let Some(element) = &node.cast::<Element>() {
                 let _ = element.set_attribute("draggable", "true");
@@ -125,7 +125,6 @@ pub fn use_drag_with_options(node: NodeRef, options: UseDragOptions) -> UseDragH
 
             || ()
         },
-        node,
     );
 
     UseDragHandle { dragging }

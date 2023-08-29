@@ -74,13 +74,13 @@ pub fn use_throttle_effect_with_deps<Callback, Dependents>(
 
     {
         let throttle = throttle.clone();
-        use_effect_with_deps(
+        use_effect_with(
+            deps,
             move |_| {
                 throttle.run();
 
                 || ()
             },
-            deps,
         );
     }
 

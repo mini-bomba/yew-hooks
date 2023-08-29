@@ -38,7 +38,8 @@ pub fn use_raf(millis: u32, delay: u32) -> f64 {
 
     {
         let elapsed = elapsed.clone();
-        use_effect_with_deps(
+        use_effect_with(
+            (millis, delay),
             move |(millis, delay)| {
                 let millis = *millis;
                 let delay = *delay;
@@ -98,7 +99,6 @@ pub fn use_raf(millis: u32, delay: u32) -> f64 {
                     *timer_delay.borrow_mut() = None;
                 }
             },
-            (millis, delay),
         );
     }
 

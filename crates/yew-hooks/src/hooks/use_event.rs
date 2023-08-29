@@ -41,7 +41,8 @@ where
 {
     let callback = use_latest(callback);
 
-    use_effect_with_deps(
+    use_effect_with(
+        (node, event_type.into()),
         move |(node, event_type)| {
             let window = window();
             let node = node.get();
@@ -74,7 +75,6 @@ where
 
             move || drop(listener)
         },
-        (node, event_type.into()),
     );
 }
 

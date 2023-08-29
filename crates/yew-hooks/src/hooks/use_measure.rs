@@ -59,7 +59,8 @@ pub fn use_measure(node: NodeRef) -> UseMeasureState {
 
     {
         let state = state.clone();
-        use_effect_with_deps(
+        use_effect_with(
+            node,
             move |node| {
                 let closure = Closure::wrap(Box::new(move |entries: Vec<ResizeObserverEntry>| {
                     for entry in &entries {
@@ -88,7 +89,6 @@ pub fn use_measure(node: NodeRef) -> UseMeasureState {
 
                 move || observer.disconnect()
             },
-            node,
         );
     }
 
